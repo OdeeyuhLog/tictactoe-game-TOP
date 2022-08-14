@@ -43,8 +43,17 @@ html {
   align-items: center;
   flex-direction: column;
   gap: 15px;
+  transition: 2s all ease;
 }
 
+.erase {
+  width: 0;
+  transform: translateX(-500px);
+}
+
+.erase > * {
+  opacity: 0;
+}
 #title {
   font-family: var(--title-font);
   color: var(--textcolor1);
@@ -76,4 +85,5 @@ html {
 
 .gameboard {
   z-index: 5;
+  background-color: white;
 }

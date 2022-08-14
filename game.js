@@ -16,7 +16,7 @@
     },
 
     startApp: function () {
-      this.landPage.style.display = 'none';
+      this.landPage.classList.add('erase');
     },
   };
 
