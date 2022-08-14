@@ -66,6 +66,12 @@ html {
   background-color: var(--main-bgcolor);
   color: var(--textcolor1);
   border: 3px solid var(--textcolor1);
+  transition: 0.45s ease-out;
+}
+
+#start-app:hover {
+  background-color: var(--normal-blue);
+  color: var(--lighter-blue);
 }
 
 .gameboard {
