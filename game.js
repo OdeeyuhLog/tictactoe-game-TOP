@@ -30,3 +30,24 @@
 
   landingPage.init();
 })();
+
+// Module for tic-tac-toe game
+(function () {
+  let game = {
+    init: function () {},
+
+    board: [],
+
+    allDOMs: function () {
+      this.squares = document.querySelectorAll('.square');
+    },
+
+    bindEvents: function () {
+      this.squares.forEach((square) => {
+        square.addEventListener('click');
+      });
+    },
+
+    changeSquare: function () {},
+  };
+})();
