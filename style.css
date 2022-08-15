@@ -90,4 +90,42 @@ html {
 .gameboard {
   z-index: 5;
   background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.gameboard h1 {
+  font-size: 3em;
+  color: var(--main-bgcolor);
+  font-family: var(--title-font);
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  background-color: var(--normal-blue);
+  height: 70%;
+  width: 35%;
+  border: 10px solid var(--normal-blue);
+  border-radius: 10px;
+  gap: 10px;
+}
+
+.square {
+  background-color: var(--main-bgcolor);
+  cursor: pointer;
+  color: var(--textcolor1);
+  display: grid;
+  font-size: 4em;
+  justify-items: center;
+  align-items: center;
+  transition: 0.3s all ease;
+}
+
+.square:hover {
+  filter: brightness(200%);
 }
