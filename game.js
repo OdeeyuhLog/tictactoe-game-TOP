@@ -20,6 +20,11 @@
     // Removes the landing page
     startApp: function () {
       this.landPage.classList.add('erase');
+      setTimeout(this.removePage.bind(this), 3000);
+    },
+
+    removePage: function () {
+      this.landPage.classList.add('gone');
     },
   };
 

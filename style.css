@@ -54,6 +54,10 @@ html {
 .erase > * {
   opacity: 0;
 }
+
+.gone {
+  display: none;
+}
 #title {
   font-family: var(--title-font);
   color: var(--textcolor1);
