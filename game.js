@@ -34,7 +34,10 @@
 // Module for tic-tac-toe game
 (function () {
   let game = {
-    init: function () {},
+    init: function () {
+      this.allDOMs();
+      this.bindEvents();
+    },
 
     board: [],
 
@@ -44,10 +47,14 @@
 
     bindEvents: function () {
       this.squares.forEach((square) => {
-        square.addEventListener('click');
+        square.addEventListener('click', this.changeSquare);
       });
     },
 
-    changeSquare: function () {},
+    changeSquare: function (e) {
+      e.target.textContent = 'X';
+    },
   };
+
+  game.init();
 })();
