@@ -41,18 +41,29 @@
 
     board: [],
 
+    currentTurn: 'X',
+
     allDOMs: function () {
       this.squares = document.querySelectorAll('.square');
     },
 
     bindEvents: function () {
       this.squares.forEach((square) => {
-        square.addEventListener('click', this.changeSquare);
+        square.addEventListener('click', this.changeSquare.bind(this));
       });
     },
 
     changeSquare: function (e) {
-      e.target.textContent = 'X';
+      e.target.textContent = this.currentTurn;
+      this.changeTurn();
+    },
+
+    changeTurn: function () {
+      if (this.currentTurn === 'X') {
+        this.currentTurn = 'O';
+      } else if (this.currentTurn === 'O') {
+        this.currentTurn = 'X';
+      }
     },
   };
 
