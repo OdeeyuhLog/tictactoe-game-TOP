@@ -39,34 +39,63 @@
       this.bindEvents();
     },
 
-    board: [],
+    board: ['', '', '', '', '', '', '', '', ''],
+    p1_board: [],
+    p2_board: [],
 
     currentTurn: 'X',
+    currentPlayer: 1,
 
     allDOMs: function () {
       this.squares = document.querySelectorAll('.square');
+      this.showPlayerTurn = document.getElementById('playerTurn');
     },
 
     bindEvents: function () {
       this.squares.forEach((square) => {
-        square.addEventListener('click', this.changeSquare.bind(this));
+        square.addEventListener('click', this.render.bind(this));
       });
     },
 
-    changeSquare: function (e) {
+    render: function (e) {
       // If square already had an O/X, it can't be changed.
       if (e.target.textContent === '') {
         e.target.textContent = this.currentTurn;
+        this.chosenSquare(e.target.dataset.attribute);
         this.changeTurn();
       } else return;
+
+      console.log(this.board);
+      console.log(this.p1_board);
+      console.log(this.p2_board);
+      console.log(this.currentPlayer);
     },
 
     changeTurn: function () {
+      // Display X and O alternately.
       if (this.currentTurn === 'X') {
         this.currentTurn = 'O';
       } else if (this.currentTurn === 'O') {
         this.currentTurn = 'X';
       }
+
+      if (this.currentPlayer === 1) {
+        this.currentPlayer = 2;
+      } else if (this.currentPlayer === 2) {
+        this.currentPlayer = 1;
+      }
+
+      this.showPlayerTurn.textContent = `Player ${this.currentPlayer}'s turn`;
+    },
+
+    chosenSquare: function (chosenElement) {
+      if (this.currentPlayer === 1) {
+        this.p1_board.push(chosenElement);
+      } else if (this.currentPlayer === 2) {
+        this.p2_board.push(chosenElement);
+      }
+
+      this.board[chosenElement] = this.currentPlayer;
     },
   };
 

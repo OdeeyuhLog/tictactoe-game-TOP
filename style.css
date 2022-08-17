@@ -95,12 +95,16 @@ html {
   align-items: center;
   flex-direction: column;
   gap: 20px;
+  font-family: var(--title-font);
 }
 
 .gameboard h1 {
   font-size: 3em;
   color: var(--main-bgcolor);
-  font-family: var(--title-font);
+}
+
+.gameboard h3 {
+  color: var(--main-bgcolor);
 }
 
 .board {
