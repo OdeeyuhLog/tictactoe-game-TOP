@@ -54,8 +54,11 @@
     },
 
     changeSquare: function (e) {
-      e.target.textContent = this.currentTurn;
-      this.changeTurn();
+      // If square already had an O/X, it can't be changed.
+      if (e.target.textContent === '') {
+        e.target.textContent = this.currentTurn;
+        this.changeTurn();
+      } else return;
     },
 
     changeTurn: function () {
