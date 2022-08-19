@@ -39,12 +39,23 @@
       this.bindEvents();
     },
 
+    //Default and constant Values
     board: ['', '', '', '', '', '', '', '', ''],
     p1_board: [],
     p2_board: [],
-
     currentTurn: 'X',
     currentPlayer: 1,
+    playerWon: false,
+    winningConditions: [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ],
 
     allDOMs: function () {
       this.squares = document.querySelectorAll('.square');
@@ -62,6 +73,7 @@
       if (e.target.textContent === '') {
         e.target.textContent = this.currentTurn;
         this.chosenSquare(e.target.dataset.attribute);
+        this.assessBoardChoices();
         this.changeTurn();
       } else return;
 
@@ -96,6 +108,23 @@
       }
 
       this.board[chosenElement] = this.currentPlayer;
+    },
+
+    assessBoardChoices: function () {
+      for (let i = 0; i <= 7; i++) {
+        const winCondition = this.winningConditions[i];
+        let a = this.board[winCondition[0]];
+        let b = this.board[winCondition[1]];
+        let c = this.board[winCondition[2]];
+
+        if (a === '' || b === '' || c === '') {
+          continue;
+        }
+
+        if (a === b && b === c) {
+          this.playerWon = true;
+        }
+      }
     },
   };
 
