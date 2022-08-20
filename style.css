@@ -142,12 +142,14 @@ html {
   height: 400px;
   width: 1000px;
   padding: 10rem;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
   border-radius: 15px;
+  display: none;
+  transition: transform 1s ease-in-out;
+  animation: fadeIn 0.4s;
 }
 
 #show-winner {
@@ -156,12 +158,25 @@ html {
   bottom: 50px;
   font-size: 5em;
 }
+
 #overlay {
   position: absolute;
   height: 100%;
   width: 100%;
   z-index: 6;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.85);
+  animation: fadeIn;
+  animation-duration: 0.45s;
+  display: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 #reset-button {

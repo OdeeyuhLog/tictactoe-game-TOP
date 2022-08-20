@@ -45,7 +45,6 @@
     p2_board: [],
     currentTurn: 'X',
     currentPlayer: 1,
-    playerWon: false,
     winningConditions: [
       [0, 1, 2],
       [3, 4, 5],
@@ -60,6 +59,9 @@
     allDOMs: function () {
       this.squares = document.querySelectorAll('.square');
       this.showPlayerTurn = document.getElementById('playerTurn');
+      this.resultModal = document.getElementById('modal');
+      this.resultText = document.getElementById('show-winner');
+      this.overlay = document.getElementById('overlay');
     },
 
     bindEvents: function () {
@@ -73,7 +75,7 @@
       if (e.target.textContent === '') {
         e.target.textContent = this.currentTurn;
         this.chosenSquare(e.target.dataset.attribute);
-        this.assessBoardChoices();
+        this.showWinner();
         this.changeTurn();
       } else return;
 
@@ -110,7 +112,7 @@
       this.board[chosenElement] = this.currentPlayer;
     },
 
-    assessBoardChoices: function () {
+    checkWin: function () {
       for (let i = 0; i <= 7; i++) {
         const winCondition = this.winningConditions[i];
         let a = this.board[winCondition[0]];
@@ -122,9 +124,23 @@
         }
 
         if (a === b && b === c) {
-          this.playerWon = true;
+          return true;
         }
       }
+    },
+
+    showWinner: function () {
+      if (this.checkWin()) {
+        this.renderModal(`PLAYER ${this.currentPlayer} WINS!`);
+      } else if (this.checkTie) {
+        this.renderModal(`IT'S A TIE!`);
+      } else return;
+    },
+
+    renderModal: function (result) {
+      this.resultText.textContent = result;
+      this.resultModal.style.display = 'flex';
+      this.overlay.style.display = 'block';
     },
   };
 
