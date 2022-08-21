@@ -102,8 +102,6 @@
 
     chosenSquare: function (chosenElement) {
       this.board[chosenElement] = this.currentTurn;
-      console.log(this.board);
-      console.log(this.currentPlayer);
     },
 
     checkWin: function () {
@@ -112,12 +110,14 @@
         let a = this.board[winCondition[0]];
         let b = this.board[winCondition[1]];
         let c = this.board[winCondition[2]];
-
         if (a === '' || b === '' || c === '') {
           continue;
         }
 
         if (a === b && b === c) {
+          a = null;
+          b = null;
+          c = null;
           return true;
         }
       }
@@ -155,18 +155,26 @@
 
     closeModal_Overlay: function () {
       // Closing Modal
-      this.resultText.textContent = '';
       this.resultModal.setAttribute('closing', '');
-      this.resultModal.addEventListener('animationend', () => {
-        this.resultModal.style.display = 'none';
-      });
+      this.resultModal.addEventListener(
+        'animationend',
+        () => {
+          this.resultModal.style.display = 'none';
+          this.resultModal.removeAttribute('closing');
+        },
+        { once: true }
+      );
 
       // Make overlay disappear
-      this.overlay.textContent = '';
       this.overlay.setAttribute('closing', '');
-      this.overlay.addEventListener('animationend', () => {
-        this.resultModal.style.display = 'none';
-      });
+      this.overlay.addEventListener(
+        'animationend',
+        () => {
+          this.overlay.style.display = 'none';
+          this.overlay.removeAttribute('closing');
+        },
+        { once: true }
+      );
     },
   };
 
