@@ -60,12 +60,14 @@
       this.resultModal = document.getElementById('modal');
       this.resultText = document.getElementById('show-winner');
       this.overlay = document.getElementById('overlay');
+      this.resetBtn = document.getElementById('reset-button');
     },
 
     bindEvents: function () {
       this.squares.forEach((square) => {
         square.addEventListener('click', this.render.bind(this));
       });
+      this.resetBtn.addEventListener('click', this.resetGame.bind(this));
     },
 
     render: function (e) {
@@ -132,6 +134,17 @@
       } else if (this.checkTie()) {
         this.renderModal(`IT'S A TIE!`);
       } else return;
+    },
+
+    resetGame: function () {
+      this.board = ['', '', '', '', '', '', '', '', ''];
+      this.currentTurn = 'X';
+      this.currentPlayer = 1;
+      this.squares.forEach((square) => {
+        square.textContent = '';
+      });
+      this.closeModal_Overlay();
+      this.showPlayerTurn.textContent = `Player ${this.currentPlayer}'s turn`;
     },
 
     renderModal: function (result) {
