@@ -152,6 +152,22 @@
       this.resultModal.style.display = 'flex';
       this.overlay.style.display = 'block';
     },
+
+    closeModal_Overlay: function () {
+      // Closing Modal
+      this.resultText.textContent = '';
+      this.resultModal.setAttribute('closing', '');
+      this.resultModal.addEventListener('animationend', () => {
+        this.resultModal.style.display = 'none';
+      });
+
+      // Make overlay disappear
+      this.overlay.textContent = '';
+      this.overlay.setAttribute('closing', '');
+      this.overlay.addEventListener('animationend', () => {
+        this.resultModal.style.display = 'none';
+      });
+    },
   };
 
   game.init();

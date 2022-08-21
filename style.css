@@ -179,6 +179,27 @@ html {
   }
 }
 
+#modal[closing] {
+  display: flex;
+  pointer-events: none;
+  animation: fadeOut 500ms forwards;
+}
+
+#overlay[closing] {
+  display: block;
+  pointer-events: none;
+  animation: fadeOut 500ms forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 #reset-button {
   font-family: var(--text-font);
   font-size: 0.8em;
