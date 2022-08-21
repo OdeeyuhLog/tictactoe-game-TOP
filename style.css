@@ -53,6 +53,7 @@ html {
 
 .erase > * {
   opacity: 0;
+  transition: 0.4s;
 }
 
 .gone {
@@ -221,4 +222,37 @@ html {
 #reset-button:hover {
   background-color: var(--normal-blue);
   color: var(--lighter-blue);
+}
+
+/* FOOTER DESIGN */
+.bottom-footer {
+  position: fixed;
+  left: 50%;
+  bottom: 8px;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+  z-index: 11;
+  transition: 0.5s ease-out;
+  text-transform: capitalize;
+  text-decoration: none;
+  font-family: var(--title-font);
+  font-size: 0.9em;
+  font-weight: 200;
+  display: flex;
+  gap: 5px;
+}
+
+.bottom-footer a {
+  text-decoration: none;
+  color: var(--textcolor1);
+  font-weight: 600;
+  transition: 0.5s;
+}
+
+.bottom-footer a[dark] {
+  color: var(--main-bgcolor);
+}
+
+.bottom-footer a:hover {
+  color: var(--normal-blue);
 }

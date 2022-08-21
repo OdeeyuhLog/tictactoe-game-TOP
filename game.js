@@ -10,6 +10,7 @@
     allDOM: function () {
       this.startBtn = document.getElementById('start-app');
       this.landPage = document.querySelector('.start-page');
+      this.footer = document.querySelector('.bottom-footer a');
     },
 
     // Event listeners
@@ -21,6 +22,7 @@
     startApp: function () {
       this.landPage.classList.add('erase');
       setTimeout(this.removePage.bind(this), 3000);
+      this.footer.setAttribute('dark', '');
     },
 
     removePage: function () {
