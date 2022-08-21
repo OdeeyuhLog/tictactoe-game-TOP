@@ -41,8 +41,6 @@
 
     //Default and constant Values
     board: ['', '', '', '', '', '', '', '', ''],
-    p1_board: [],
-    p2_board: [],
     currentTurn: 'X',
     currentPlayer: 1,
     winningConditions: [
@@ -75,14 +73,10 @@
       if (e.target.textContent === '') {
         e.target.textContent = this.currentTurn;
         this.chosenSquare(e.target.dataset.attribute);
-        this.showWinner();
         this.changeTurn();
+        this.showResults();
+        this.changeCurrentPlayer();
       } else return;
-
-      console.log(this.board);
-      console.log(this.p1_board);
-      console.log(this.p2_board);
-      console.log(this.currentPlayer);
     },
 
     changeTurn: function () {
@@ -92,7 +86,9 @@
       } else if (this.currentTurn === 'O') {
         this.currentTurn = 'X';
       }
+    },
 
+    changeCurrentPlayer: function () {
       if (this.currentPlayer === 1) {
         this.currentPlayer = 2;
       } else if (this.currentPlayer === 2) {
@@ -103,13 +99,9 @@
     },
 
     chosenSquare: function (chosenElement) {
-      if (this.currentPlayer === 1) {
-        this.p1_board.push(chosenElement);
-      } else if (this.currentPlayer === 2) {
-        this.p2_board.push(chosenElement);
-      }
-
-      this.board[chosenElement] = this.currentPlayer;
+      this.board[chosenElement] = this.currentTurn;
+      console.log(this.board);
+      console.log(this.currentPlayer);
     },
 
     checkWin: function () {
@@ -129,10 +121,15 @@
       }
     },
 
-    showWinner: function () {
+    checkTie: function () {
+      let isFull = this.board.every((val) => val != '');
+      return isFull;
+    },
+
+    showResults: function () {
       if (this.checkWin()) {
         this.renderModal(`PLAYER ${this.currentPlayer} WINS!`);
-      } else if (this.checkTie) {
+      } else if (this.checkTie()) {
         this.renderModal(`IT'S A TIE!`);
       } else return;
     },
